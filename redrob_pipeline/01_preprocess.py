@@ -50,6 +50,7 @@ def extract_features(c):
         'open_to_work_flag': signals.get('open_to_work_flag', False),
         'saved_by_recruiters_30d': signals.get('saved_by_recruiters_30d', 0),
         'search_appearance_30d': signals.get('search_appearance_30d', 0),
+        'profile_views_received_30d': signals.get('profile_views_received_30d', 0),
         'notice_period_days': signals.get('notice_period_days', 90),
         'endorsements_received': signals.get('endorsements_received', 0),
         'avg_assessment_score': avg_assessment_score,
