@@ -1,0 +1,14 @@
+fastapi
+uvicorn
+pydantic
+pydantic-settings
+qdrant-client
+google-generativeai
+sentence-transformers
+streamlit
+python-multipart
+PyPDF2
+docx2txt
+pandas
+plotly
+networkx

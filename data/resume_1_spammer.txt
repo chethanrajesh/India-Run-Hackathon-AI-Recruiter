@@ -1,0 +1,19 @@
+Name: John "AI" Doe
+Title: Lead Machine Learning Cloud Engineer Architect
+Education: B.S. in Computer Science, State University, CGPA: 3.2
+
+Skills:
+Python, Java, C++, Go, Rust, AWS, GCP, Azure, Docker, Kubernetes, Terraform, CI/CD, Machine Learning, Deep Learning, Generative AI, LLMs, NLP, PyTorch, TensorFlow, Keras, Scikit-Learn, MLflow, Jenkins, GitHub Actions, Kafka, Spark, Hadoop, SQL, NoSQL.
+
+Experience:
+Data Engineer, TechCorp (Jan 2023 - Present)
+- Worked on data pipelines.
+- Used Python and SQL.
+
+Junior Software Developer, StartupInc (Jun 2022 - Dec 2022)
+- Fixed bugs in the frontend.
+- Wrote some scripts.
+
+Projects:
+- Built a to-do app.
+- Created a simple calculator.

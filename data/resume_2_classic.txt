@@ -1,0 +1,21 @@
+Name: Sarah DevOps
+Title: MLOps Engineer
+Education: M.S. Data Science, Tech Institute, CGPA: 3.8
+
+Skills:
+Python, AWS, Docker, Kubernetes, CI/CD, Terraform, GitHub Actions, MLflow.
+
+Experience:
+MLOps Engineer, AI Solutions LLC (Mar 2021 - Present)
+- Deployed ML models using Docker and Kubernetes on AWS EKS.
+- Built automated CI/CD pipelines using GitHub Actions for model retraining.
+- Managed infrastructure using Terraform.
+- Implemented MLflow for model tracking.
+
+DevOps Engineer, CloudNet (Jun 2018 - Feb 2021)
+- Managed AWS EC2 and S3 infrastructure.
+- Automated deployments with Jenkins.
+- Reduced deployment time by 40%.
+
+Certifications:
+- AWS Certified DevOps Engineer - Professional
