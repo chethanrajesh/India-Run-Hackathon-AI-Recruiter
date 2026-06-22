@@ -8,3 +8,5 @@ env/
 .pytest_cache/
 qdrant_data/
 postgres_data/
+India_runs_data_and_ai_challenge/
+redrob_pipeline/data/

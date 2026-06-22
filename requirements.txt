@@ -12,3 +12,6 @@ docx2txt
 pandas
 plotly
 networkx
+faiss-cpu
+pyarrow
+fastparquet
