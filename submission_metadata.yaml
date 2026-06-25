@@ -1,0 +1,20 @@
+team_name: "The Big OOPs"
+primary_contact_name: "Chethan Rajesh"
+primary_contact_email: "chethanrajesh@example.com"
+primary_contact_phone: "+91-XXXXXXXXXX"
+github_repository_url: "https://github.com/chethanrajesh/India-Run-Hackathon-AI-Recruiter"
+sandbox_demo_link: "See README (Docker recipe included for sandboxed offline execution)"
+ai_tools_declared: 
+  - Gemini
+  - Copilot
+compute_environment_summary: "Local Machine, CPU, 16GB RAM, Python 3.10+"
+team_members:
+  - name: "Chethan Rajesh"
+    email: "chethanrajesh@example.com"
+methodology_summary: >
+  Our high-performance CPU-bound candidate discovery system runs entirely offline. 
+  We use SentenceTransformers (BAAI/bge-small-en-v1.5) to generate semantic vectors of candidate summaries, skills, and histories. 
+  These 100k vectors are cached via numpy.memmap to strictly adhere to the 16GB RAM limit. 
+  During ranking, we perform a FAISS IndexFlatIP search to retrieve the top 3,000 matches, then apply an MMR algorithm to winnow down to a diverse top 800. 
+  Finally, we apply a deterministic 6-factor signal fusion model (evaluating Semantic Fit, Career Evidence, Skill Evidence, Availability, Market Demand, and Inconsistencies) 
+  to extract the Top 100. Explanations are dynamically generated using factual candidate data without network LLM calls.

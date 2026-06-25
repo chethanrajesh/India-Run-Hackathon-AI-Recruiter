@@ -5,7 +5,7 @@ import pandas as pd
 from sentence_transformers import SentenceTransformer
 from tqdm import tqdm
 
-from config import CANDIDATES_JSONL, DATA_DIR, EMBEDDINGS_FILE, FEATURES_FILE, MODEL_NAME, EMBEDDING_DIM
+from redrob_pipeline.config import CANDIDATES_JSONL, DATA_DIR, EMBEDDINGS_FILE, FEATURES_FILE, MODEL_NAME, EMBEDDING_DIM
 
 BATCH_SIZE = 256
 

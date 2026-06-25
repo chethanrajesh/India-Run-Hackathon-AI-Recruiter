@@ -5,12 +5,12 @@ import pandas as pd
 import docx2txt
 from sentence_transformers import SentenceTransformer
 
-from config import JD_DOCX, EMBEDDINGS_FILE, FEATURES_FILE, MODEL_NAME, EMBEDDING_DIM
-from src.engines.semantic import create_faiss_index, retrieve_top_k, apply_mmr
-from src.engines.fusion import compute_final_score
-from src.engines.explanation import generate_explanation
+from redrob_pipeline.config import JD_DOCX, EMBEDDINGS_FILE, FEATURES_FILE, MODEL_NAME, EMBEDDING_DIM
+from redrob_pipeline.src.engines.semantic import create_faiss_index, retrieve_top_k, apply_mmr
+from redrob_pipeline.src.engines.fusion import compute_final_score
+from redrob_pipeline.src.engines.explanation import generate_explanation
 
-def main():
+def main(out_path="The-Big-OOPs.csv"):
     start_time = time.time()
     
     # 1. Load JD
@@ -67,25 +67,42 @@ def main():
         # Assuming JD requires 5 years exp; this could be extracted dynamically
         score, components = compute_final_score(row.to_dict(), row['semantic_fit'], jd_years_required=5)
         final_scores.append(score)
-        explanations.append(generate_explanation(components))
+        # Store components temporarily so we can use them for explanations later
+        explanations.append(components)
         
     top_800_df['final_score'] = final_scores
-    top_800_df['explanation'] = explanations
+    top_800_df['components'] = explanations
     
     # 8. Sort and slice Top 100
     print("Selecting Top 100...")
     top_100_df = top_800_df.sort_values(by='final_score', ascending=False).head(100).copy()
     top_100_df['rank'] = range(1, 101)
     
-    # 9. Submission
-    submission_df = top_100_df[['rank', 'candidate_id', 'final_score', 'explanation']].rename(columns={'final_score': 'score'})
+    # Generate explanations using rank and full candidate data
+    print("Generating dynamic reasoning strings...")
+    reasoning_list = []
+    for _, row in top_100_df.iterrows():
+        reasoning = generate_explanation(
+            candidate_row=row.to_dict(), 
+            rank=row['rank'], 
+            components=row['components'],
+            jd_years_required=5
+        )
+        reasoning_list.append(reasoning)
+        
+    top_100_df['explanation'] = reasoning_list
     
-    submission_path = "submission.csv"
-    submission_df.to_csv(submission_path, index=False)
+    # 9. Submission formatting
+    # Required order: candidate_id, rank, score, reasoning
+    submission_df = top_100_df[['candidate_id', 'rank', 'final_score', 'explanation']].rename(
+        columns={'final_score': 'score', 'explanation': 'reasoning'}
+    )
+    
+    submission_df.to_csv(out_path, index=False, encoding='utf-8')
     
     end_time = time.time()
     
-    print(f"Successfully generated {submission_path}")
+    print(f"Successfully generated {out_path}")
     print(f"Total time: {end_time - start_time:.2f} seconds")
     
 if __name__ == "__main__":

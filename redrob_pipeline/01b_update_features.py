@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 from tqdm import tqdm
 
-from config import CANDIDATES_JSONL, FEATURES_FILE
+from redrob_pipeline.config import CANDIDATES_JSONL, FEATURES_FILE
 
 def extract_features(c):
     profile = c.get('profile', {})
