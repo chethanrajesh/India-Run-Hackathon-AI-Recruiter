@@ -1,20 +1,97 @@
-team_name: "The Big OOPs"
-primary_contact_name: "Chethan Rajesh"
-primary_contact_email: "chethanrajesh@example.com"
-primary_contact_phone: "+91-XXXXXXXXXX"
-github_repository_url: "https://github.com/chethanrajesh/India-Run-Hackathon-AI-Recruiter"
-sandbox_demo_link: "See README (Docker recipe included for sandboxed offline execution)"
-ai_tools_declared: 
-  - Gemini
-  - Copilot
-compute_environment_summary: "Local Machine, CPU, 16GB RAM, Python 3.10+"
+# Redrob Hackathon — Submission Metadata Template
+#
+# Copy this file to your repo root as `submission_metadata.yaml` and fill it in.
+# The fields here should match what you submit via the portal at upload time.
+# Stage 3 review uses this file to verify your portal metadata.
+
+# ============================================================================
+# Team identity
+# ============================================================================
+team_name: "The-Big-OOPs"  # Used in leaderboard and announcements
+
+primary_contact:
+  name: "Chethan R"
+  email: "chethanrajeshevola@gmail.com"   # Used for all organizer communication
+  phone: "+91-9035811985"        # Used for top-50 / top-10 outreach
+
 team_members:
-  - name: "Chethan Rajesh"
-    email: "chethanrajesh@example.com"
-methodology_summary: >
+  - name: "Chethan R"
+    email: "chethanrajeshevola@gmail.com"
+    role: "ML Engineer"          # Optional, e.g. "Team Lead", "Backend", "Data"
+  - name: "Amisha Vanditha"
+    email: "amishavanditha@gmail.com"
+    role: "Backend "   
+  - name: "Kavitha RB"
+    email: "@gmail.com"
+    role: "Team Lead"    
+  - name: "Yashwanth Royal"
+    email: "a@gmail.com"
+    role: "Data Scientist"   # Optional, e.g. "Team Lead", "Backend", "Data"
+  
+  # Add more members as needed; solo participants list just one member
+
+# ============================================================================
+# Code and reproducibility
+# ============================================================================
+github_repo: "https://github.com/chethanrajesh/India-Run-Hackathon-AI-Recruiter"
+# Required. Must be reachable. Private repos OK if you can grant organizer
+# access at Stage 3 (the email to add will be communicated then).
+
+sandbox_link: "https://github.com/chethanrajesh/India-Run-Hackathon-AI-Recruiter#docker-sandbox-stage-105-requirement"
+# Required. A working hosted environment where the ranker can be run on a small
+# candidate sample. See Section 10.5 of submission_spec.md for acceptable
+# platforms (HuggingFace Spaces, Streamlit Cloud, Replit, Colab, Docker, Binder).
+
+reproduce_command: "python rank.py --candidates ./candidates.jsonl --jd ./job_description.docx --out ./The-Big-OOPs.csv"
+# The single command that produces submission.csv from candidates.jsonl.
+# Should run end-to-end within 5 minutes on CPU with 16GB RAM and no network.
+
+# ============================================================================
+# Compute environment
+# ============================================================================
+compute:
+  platform: "Local Windows Machine"             # Or: "AWS EC2 c5.4xlarge", "Local Linux box", etc.
+  cpu_cores: 8                                  # Number of CPU cores used
+  ram_gb: 16                                    # Available RAM in GB
+  python_version: "3.10"                        # python --version
+  os: "Windows 11"                              # Or "Ubuntu 22.04 LTS", etc.
+  uses_gpu_for_inference: false                 # Must be false — see compute constraints
+  has_network_during_ranking: false             # Must be false — no API calls during ranking
+  pre_computation_required: true                # true if you pre-compute embeddings or train models offline
+  pre_computation_time_minutes: 90              # Approximate, if applicable
+
+# ============================================================================
+# AI tools declaration
+# ============================================================================
+# Transparency only — declared use is NOT penalized. Be honest. Stage 5 interview
+# may verify these declarations against your code; declarations that contradict
+# your code or your interview are flagged.
+ai_tools_used:
+  - "Gemini"        # e.g. for architecture discussion, code review
+  - "GitHub Copilot"  # e.g. for autocomplete
+  # Other options: "ChatGPT", "Cursor", "Gemini", "Codeium", "Other", "None"
+
+ai_usage_summary: |
+  - Used Gemini for architectural discussion and rules-engine design. Used Copilot for autocomplete.
+  -No candidate data was fed to any external APIs.
+  Used ChatGPT to debug Python issues
+# ============================================================================
+# Approach summary (optional but recommended)
+# ============================================================================
+methodology_summary: |
   Our high-performance CPU-bound candidate discovery system runs entirely offline. 
   We use SentenceTransformers (BAAI/bge-small-en-v1.5) to generate semantic vectors of candidate summaries, skills, and histories. 
   These 100k vectors are cached via numpy.memmap to strictly adhere to the 16GB RAM limit. 
   During ranking, we perform a FAISS IndexFlatIP search to retrieve the top 3,000 matches, then apply an MMR algorithm to winnow down to a diverse top 800. 
   Finally, we apply a deterministic 6-factor signal fusion model (evaluating Semantic Fit, Career Evidence, Skill Evidence, Availability, Market Demand, and Inconsistencies) 
   to extract the Top 100. Explanations are dynamically generated using factual candidate data without network LLM calls.
+
+# ============================================================================
+# Declarations
+# ============================================================================
+declarations:
+  read_submission_spec: true        # I have read submission_spec.md in full
+  code_is_original_work: true       # My code is my team's original work (using AI as a tool is fine)
+  no_collusion: true                # I have not coordinated my submission with other teams
+  honeypot_check_done: true         # OPTIONAL — set true if you explicitly checked for honeypots in your ranking
+  reproduction_tested: true         # I have tested that my reproduce_command runs end-to-end
