@@ -1,49 +1,38 @@
-# Redrob Hackathon — Submission Metadata Template
-#
-# Copy this file to your repo root as `submission_metadata.yaml` and fill it in.
-# The fields here should match what you submit via the portal at upload time.
-# Stage 3 review uses this file to verify your portal metadata.
-
 # ============================================================================
 # Team identity
 # ============================================================================
-team_name: "The-Big-OOPs"  # Used in leaderboard and announcements
+team_name: "The-Big-OOPs"  
 
 primary_contact:
   name: "Chethan R"
-  email: "chethanrajeshevola@gmail.com"   # Used for all organizer communication
-  phone: "+91-9035811985"        # Used for top-50 / top-10 outreach
+  email: "chethanrajeshevola@gmail.com"   
+  phone: "+91-9035811985"       
 
 team_members:
   - name: "Chethan R"
     email: "chethanrajeshevola@gmail.com"
-    role: "ML Engineer"          # Optional, e.g. "Team Lead", "Backend", "Data"
+    role: "ML Engineer"          
   - name: "Amisha Vanditha"
     email: "amishavanditha@gmail.com"
-    role: "Backend "   
+    role: "Backend Engineer "   
   - name: "Kavitha RB"
-    email: "@gmail.com"
+    email: "kavitharamishetty@gmail.com"
     role: "Team Lead"    
   - name: "Yashwanth Royal"
-    email: "a@gmail.com"
-    role: "Data Scientist"   # Optional, e.g. "Team Lead", "Backend", "Data"
+    email: "koppalayashwanth27@gmail.com"
+    role: "Data Scientist"   
   
-  # Add more members as needed; solo participants list just one member
 
 # ============================================================================
 # Code and reproducibility
 # ============================================================================
 github_repo: "https://github.com/chethanrajesh/India-Run-Hackathon-AI-Recruiter"
-# Required. Must be reachable. Private repos OK if you can grant organizer
-# access at Stage 3 (the email to add will be communicated then).
 
 sandbox_link: "https://github.com/chethanrajesh/India-Run-Hackathon-AI-Recruiter#docker-sandbox-stage-105-requirement"
-# Required. A working hosted environment where the ranker can be run on a small
-# candidate sample. See Section 10.5 of submission_spec.md for acceptable
-# platforms (HuggingFace Spaces, Streamlit Cloud, Replit, Colab, Docker, Binder).
+# platforms (Docker).
 
 reproduce_command: "python rank.py --candidates ./candidates.jsonl --jd ./job_description.docx --out ./The-Big-OOPs.csv"
-# The single command that produces submission.csv from candidates.jsonl.
+# The single command that produces The-Big-OOPs.csv from candidates.jsonl.
 # Should run end-to-end within 5 minutes on CPU with 16GB RAM and no network.
 
 # ============================================================================
@@ -63,28 +52,28 @@ compute:
 # ============================================================================
 # AI tools declaration
 # ============================================================================
-# Transparency only — declared use is NOT penalized. Be honest. Stage 5 interview
-# may verify these declarations against your code; declarations that contradict
-# your code or your interview are flagged.
+
 ai_tools_used:
   - "Gemini"        # e.g. for architecture discussion, code review
   - "GitHub Copilot"  # e.g. for autocomplete
-  # Other options: "ChatGPT", "Cursor", "Gemini", "Codeium", "Other", "None"
 
 ai_usage_summary: |
   - Used Gemini for architectural discussion and rules-engine design. Used Copilot for autocomplete.
   -No candidate data was fed to any external APIs.
-  Used ChatGPT to debug Python issues
+  -Used ChatGPT to debug Python issues
 # ============================================================================
 # Approach summary (optional but recommended)
 # ============================================================================
 methodology_summary: |
-  Our high-performance CPU-bound candidate discovery system runs entirely offline. 
-  We use SentenceTransformers (BAAI/bge-small-en-v1.5) to generate semantic vectors of candidate summaries, skills, and histories. 
-  These 100k vectors are cached via numpy.memmap to strictly adhere to the 16GB RAM limit. 
-  During ranking, we perform a FAISS IndexFlatIP search to retrieve the top 3,000 matches, then apply an MMR algorithm to winnow down to a diverse top 800. 
-  Finally, we apply a deterministic 6-factor signal fusion model (evaluating Semantic Fit, Career Evidence, Skill Evidence, Availability, Market Demand, and Inconsistencies) 
-  to extract the Top 100. Explanations are dynamically generated using factual candidate data without network LLM calls.
+Our model Looks at 100,000 candidate profiles and picks the best 100 matches for a job, without using the internet or any AI chatbot calls instead it runs everything locally on a regular computer.
+How it works, step by step:
+1.Turn profiles into "fingerprints" - Here Each candidate's summary, skills, and work history get converted into a numeric pattern (BGE model) that captures what they are actually about and not just keywords.
+2.Stores smartly , not largely - Instead of loading all 100,000 of these fingerprints into memory at once , the system reads them straight off the disk as needed.
+3.Find the closest matches - Uses a search tool called FAISS, which quickly finds the 3,000 candidates whose "fingerprint" is most similar to the job description.
+4.Avoid duplicates — From those 3,000, it picks a more varied group of 800 — so you don't end up with 50 nearly identical resumes and miss other strong candidates.
+5.Score based on 6 things and not just one — Each of those 800 gets rated on: how well they match semantically, their career track record, their actual skills, whether they are available, how in-demand they are, and whether anything about their profile looks inconsistent or suspicious. These six scores get combined into one final number.
+6.Pick the top 100 — Top scoring 100 candidates win.
+7.Explain the picks honestly — For each finalist, it writes a short explanation using real facts from their profile 
 
 # ============================================================================
 # Declarations
