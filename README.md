@@ -41,7 +41,7 @@ For Stage 3 evaluation, run the ranking engine using this single unified CLI com
 python rank.py \
   --candidates ./candidates.jsonl \
   --jd ./job_description.docx \
-  --out ./submission.csv
+  --out ./The-Big-OOPs.csv
 ```
 *(You can pass any path to `--candidates` and `--jd`)*
 
@@ -61,7 +61,7 @@ docker build -t redrob-ranker .
 docker run -v $(pwd):/app/data redrob-ranker \
   --candidates /app/data/candidates.jsonl \
   --jd /app/data/job_description.docx \
-  --out /app/data/submission.csv
+  --out /app/data/The-Big-OOPs.csv
 ```
 
 ---
