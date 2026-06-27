@@ -33,7 +33,7 @@ Once the offline preprocessing is complete, the actual ranking step executes in 
 
 ---
 
-## 🚀 Single Reproduction Command (Stage 3)
+## Single Reproduction Command (Stage 3)
 
 For Stage 3 evaluation, run the ranking engine using this single unified CLI command. *(Note: Ensure the offline preprocessing step has already run to generate the embeddings).*
 
@@ -47,7 +47,7 @@ python rank.py \
 
 ---
 
-## 🐳 Docker Sandbox (Stage 10.5 Requirement)
+## Docker Sandbox (Stage 10.5 Requirement)
 
 To satisfy the **Sandbox / Demo link requirement**, we have included a self-contained Docker recipe as an acceptable sandbox alternative (as per Section 10.5 of the spec). The `Dockerfile` packages the environment and pre-downloads the model weights to guarantee the network remains entirely **Off** during ranking.
 
@@ -66,7 +66,7 @@ docker run -v $(pwd):/app/data redrob-ranker \
 
 ---
 
-## 📄 Output Format Compliance
+##  Output Format Compliance
 
 Our pipeline guarantees the output strictly follows the required format and ordering:
 1. `candidate_id`: The ID from candidates.jsonl.
@@ -76,13 +76,13 @@ Our pipeline guarantees the output strictly follows the required format and orde
 
 ---
 
-## 📝 Submission Metadata
+##  Submission Metadata
 
 The required **`submission_metadata.yaml`** is located at the root of the repository, containing all declared AI tools, team member information, and methodology summaries.
 
 ---
 
-## 📂 Project Structure
+##  Project Structure
 
 ```text
 India/
