@@ -47,9 +47,9 @@ python rank.py \
 
 ---
 
-## Docker Sandbox (Stage 10.5 Requirement)
+## Docker Sandbox 
 
-To satisfy the **Sandbox / Demo link requirement**, we have included a self-contained Docker recipe as an acceptable sandbox alternative (as per Section 10.5 of the spec). The `Dockerfile` packages the environment and pre-downloads the model weights to guarantee the network remains entirely **Off** during ranking.
+To satisfy the **Sandbox / Demo link requirement**, we have included a self-contained Docker recipe as an acceptable sandbox alternative. The `Dockerfile` packages the environment and pre-downloads the model weights to guarantee the network remains entirely **Off** during ranking.
 
 You can verify the sandbox using these exact commands:
 

@@ -28,17 +28,20 @@ team_members:
 # ============================================================================
 github_repo: "https://github.com/chethanrajesh/India-Run-Hackathon-AI-Recruiter"
 
-sandbox_link: "https://github.com/chethanrajesh/India-Run-Hackathon-AI-Recruiter#docker-sandbox-stage-105-requirement"
-```bash
-#1. Build the image
-docker build -t redrob-ranker .
+sandbox:
+  type: "docker"
 
-# 2. Run the container
-docker run -v $(pwd):/app/data redrob-ranker \
-  --candidates /app/data/candidates.jsonl \
-  --jd /app/data/job_description.docx \
-  --out /app/data/submission.csv
-```
+  build_command: "docker build -t redrob-ranker ."
+
+  run_command: >
+    docker run
+    -v /path/to/data:/app/data
+    redrob-ranker
+    --candidates /app/data/candidates.jsonl
+    --jd /app/data/job_description.docx
+    --out /app/data/The-Big-OOPs.csv
+
+sandbox_link: "https://github.com/chethanrajesh/India-Run-Hackathon-AI-Recruiter"
 
 # platforms (Docker).
 
