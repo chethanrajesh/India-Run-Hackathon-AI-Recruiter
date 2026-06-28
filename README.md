@@ -38,10 +38,7 @@ Once the offline preprocessing is complete, the actual ranking step executes in 
 For Stage 3 evaluation, run the ranking engine using this single unified CLI command. *(Note: Ensure the offline preprocessing step has already run to generate the embeddings).*
 
 ```bash
-python rank.py \
-  --candidates ./candidates.jsonl \
-  --jd ./job_description.docx \
-  --out ./The-Big-OOPs.csv
+python rank.py --candidates ./candidates.jsonl --jd ./job_description.docx --out ./The-Big-OOPs.csv
 ```
 *(You can pass any path to `--candidates` and `--jd`)*
 
@@ -58,10 +55,7 @@ You can verify the sandbox using these exact commands:
 docker build -t redrob-ranker .
 
 # 2. Run the container
-docker run -v $(pwd):/app/data redrob-ranker \
-  --candidates /app/data/candidates.jsonl \
-  --jd /app/data/job_description.docx \
-  --out /app/data/The-Big-OOPs.csv
+docker run -v "${PWD}:/app/data" redrob-ranker --candidates /app/data/India_runs_data_and_ai_challenge/candidates.jsonl --jd /app/data/India_runs_data_and_ai_challenge/job_description.docx --out /app/data/The-Big-OOPs.csv
 ```
 
 ---
